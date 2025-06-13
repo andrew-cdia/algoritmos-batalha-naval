@@ -1,0 +1,25 @@
+{
+    "Tabuleiro" : 10,
+    "Entidades" : {
+        "Porta-Aviões" : {
+            "Quantidade" : 1,
+            "Tamanho" : 5
+        },
+        "Navio de Batalha" : {
+            "Quantidade" : 1,
+            "Tamanho" : 4
+        },
+        "Cruzador" : {
+            "Quantidade" : 1,
+            "Tamanho" : 3
+        },
+        "Destruidores" : {
+            "Quantidade" : 2,
+            "Tamanho" : 2
+        },
+        "Submarinos" : {
+            "Quantidade" : 2,
+            "Tamanho" : 1
+        }
+    }
+}
