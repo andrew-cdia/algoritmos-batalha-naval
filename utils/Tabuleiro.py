@@ -9,7 +9,7 @@ class Tabuleiro:
     """
 
     def __init__(self) -> None:
-        with open("config.json", "r") as js:
+        with open("config.json", "r", encoding="UTF-8") as js:
             config = json.load(js)
         
         self.tamanho = config["Tabuleiro"]
@@ -17,6 +17,7 @@ class Tabuleiro:
         self.tab_visual = [["~"] * self.tamanho for n in range(self.tamanho)]
         self.posicoes = [["~"] * self.tamanho for n in range(self.tamanho)]
         self.main_sum = 0
+        self.contador = 0
 
     """
     Métodos para imprimir o tabuleiro
@@ -59,8 +60,9 @@ class Tabuleiro:
                 if self.can_place(size, row, col, view):
                     self.place(name, size, row, col, view)
                     counter += 1
-                    self.main_sum += quantity
-                
+                    self.main_sum += size
+
+
     def can_place(self, size : int, row : int, col : int, view : str) -> bool:
         if view == "horizontal" and col + size < self.tamanho:
             for n in range(size):
@@ -88,9 +90,21 @@ class Tabuleiro:
     """
 
     def guess(self, row : int, col : int):
-        pass
+        if row >= self.tamanho or col >= self.tamanho:
+            raise BoardException("Essa posição não está nos limites do tabuleiro")
+        if self.tab_visual[row][col] != "~":
+            raise BoardException("Essa posição já foi jogada")
+        
+        if self.posicoes[row][col] == "~":
+            self.tab_visual[row][col] = "\033[96mX\033[00m"
+            print("\n\033[96mÁgua\033[00m")
+        else:
+            self.tab_visual[row][col] = f"\033[93m{self.posicoes[row][col]}\033[00m"
+            print("\n\033[93mAcertou um navio\033[00m")
+            self.contador += 1
     
 
 class BoardException(Exception):
     def __init__(self, message : str) -> None:
         super().__init__(message)
+        self.message = message

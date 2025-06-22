@@ -1,4 +1,7 @@
 # Projeto de jogo: Batalha naval
+
+## Cabeçalho
+
 - Curso: Ciência de dados e IA
 - Professor: Anderson
 - Data de início: 12/06/2025

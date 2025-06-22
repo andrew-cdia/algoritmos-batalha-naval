@@ -1,5 +1,6 @@
 from utils import OnePlayer, TwoPlayer
 import os
+import time
 
 """
 Entry point da aplicação
@@ -28,9 +29,13 @@ def main():
     resultado = jogo.play()
 
     if resultado:
-        pass
+        os.system("cls")
+        print("\033[92mVocê ganhou\033[00m")
+        time.sleep(2)
     else:
-        pass
+        os.system("cls")
+        print("\033[91mVocê perdeu\033[00m")
+        time.sleep(2)
 
 if __name__ == "__main__":
     main()
