@@ -24,7 +24,6 @@ class OnePlayerGame:
                 return True
 
             self.board.print_board()
-            self.board.print_positions()
             print(f"\nTentativas: {tries} / {max_tries}")
             print("\n-> Dê uma posição: (linha, coluna): ", end="")
             row, col = self.get_location(input())
