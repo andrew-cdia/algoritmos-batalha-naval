@@ -21,5 +21,10 @@
             "Quantidade" : 2,
             "Tamanho" : 1
         }
+    },
+    "Dificuldades" : {
+        "Fácil" : 50,
+        "Médio" : 42,
+        "Difícil" : 35
     }
 }

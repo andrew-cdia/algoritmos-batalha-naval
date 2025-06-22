@@ -2,8 +2,6 @@ import json
 import random
 import os
 
-os.chdir("..")
-
 class Tabuleiro:
     
     """
@@ -16,8 +14,9 @@ class Tabuleiro:
         
         self.tamanho = config["Tabuleiro"]
         self.navios = config["Entidades"]
-        self.tab_visual = [["~"] * self.tamanho] * self.tamanho
-        self.posicoes = self.tab_visual.copy()
+        self.tab_visual = [["~"] * self.tamanho for n in range(self.tamanho)]
+        self.posicoes = [["~"] * self.tamanho for n in range(self.tamanho)]
+        self.main_sum = 0
 
     """
     Métodos para imprimir o tabuleiro
@@ -52,7 +51,7 @@ class Tabuleiro:
             size = config["Tamanho"]
             quantity = config["Quantidade"]
 
-            while counter <= quantity:
+            while counter < quantity:
                 row = random.randint(0, self.tamanho - 1)
                 col = random.randint(0, self.tamanho - 1)
                 view = random.choice(["horizontal", "vertical"])
@@ -60,8 +59,8 @@ class Tabuleiro:
                 if self.can_place(size, row, col, view):
                     self.place(name, size, row, col, view)
                     counter += 1
+                    self.main_sum += quantity
                 
-    
     def can_place(self, size : int, row : int, col : int, view : str) -> bool:
         if view == "horizontal" and col + size < self.tamanho:
             for n in range(size):
@@ -83,10 +82,15 @@ class Tabuleiro:
         elif view == "vertical":
             for n in range(size):
                 self.posicoes[row + n][col] = name[0]
+    
+    """
+    Métodos da lógica do jogo
+    """
 
+    def guess(self, row : int, col : int):
+        pass
+    
 
-
-tab = Tabuleiro()
-tab.print_board()
-tab.generate_places()
-tab.print_positions()
+class BoardException(Exception):
+    def __init__(self, message : str) -> None:
+        super().__init__(message)
